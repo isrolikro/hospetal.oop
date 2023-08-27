@@ -90,7 +90,7 @@ class Hospital {
   displayAllAppointments() {
     console.log("All Appointments:");
     this.appointments.forEach((appointment) => {
-      console.log(appointment);
+      appointment.appointmentDetails()
     });
   }
   displayDoctorAppointments(doctorID: number) {
@@ -125,9 +125,6 @@ const newPatient = new Patient("Moshe", "Shalom", 1)
 const newDoctor = new Doctor("Rofe", "Ehad", 2, "Gastro")
 const newAppoitment = new Appointment(newPatient, newDoctor, "21-05-23", "10:40")
 newHospital.addAppointment(newAppoitment)
-
-console.log(newHospital.addPatient(newPatient));
-console.log("Showing all appointments",newHospital.displayAllAppointments())
 
 
 console.log("I think that it's should work now!");
