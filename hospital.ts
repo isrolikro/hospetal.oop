@@ -43,26 +43,63 @@ class Patient extends Person {
     console.log(
       `patient ID: ${this.patientID} name: ${this.firstName}, ${this.lastName}`
     );
-    console.log(`Medical History: ${this.medicalHistory.join(', ')}`);
+    console.log(`Medical History: ${this.medicalHistory.join(", ")}`);
   }
-
 }
-// 3:
-class Doctor extends Person {
-  doctorID: number;
-  specialization: string;
+// 4,3.
+class MedicalStaff extends Person {
+  staffID: number;
+  position: number;
+  department: string;
 
   constructor(
     firstName: string,
     lastName: string,
     age: number,
     address: string,
-    doctorID: number,
-    specialization: string
+    staffID: number,
+    position: number,
+    department: string
   ) {
     super(firstName, lastName, age, address);
+    this.staffID = staffID;
+    this.position = position;
+    this.department = department;
+  }
+}
+// 3:
+class Doctor extends MedicalStaff {
+  doctorID: number;
+  specialization: string;
+  availability: Availability;
+  
+  constructor({
+    firstName,
+    lastName,
+    age,
+    address,
+    staffID,
+    position,
+    department,
+    doctorID,
+    specialization,
+    availability,
+  }: {
+    firstName: string;
+    lastName: string;
+    age: number;
+    address: string;
+    staffID: number;
+    position: number;
+    department: string;
+    doctorID: number;
+    specialization: string;
+    availability: Availability;
+  }) {
+    super(firstName, lastName, age, address, staffID, position, department);
     this.doctorID = doctorID;
     this.specialization = specialization;
+    this.availability = availability
   }
 
   doctorDetails() {
@@ -71,6 +108,18 @@ class Doctor extends Person {
     );
   }
 }
+
+interface Availability {
+  startTime: string;
+  endTime: string;
+}
+
+// const doctorAvailability: Availability = {
+//   startTime: '08:00 AM',
+//   endTime: '04:00 PM'
+// };
+
+
 // 4:
 class Appointment {
   patient: Patient;
